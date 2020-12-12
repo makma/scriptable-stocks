@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import os
+import json
 
 loosers_url = 'https://finance.yahoo.com/losers/'
 loosers_response = requests.get(loosers_url)
@@ -27,4 +28,4 @@ if os.path.exists(loosers_json_filename):
   os.remove(loosers_json_filename)
 
 with open(loosers_json_filename, "a") as loosers_json_file:
-  loosers_json_file.write(str(result_json_content))
+  json.dump(result_json_content, loosers_json_file)
