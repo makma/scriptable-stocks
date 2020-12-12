@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import os
 import json
+import datetime
 
 loosers_url = 'https://finance.yahoo.com/losers/'
 loosers_response = requests.get(loosers_url)
@@ -10,6 +11,7 @@ loosers_table = loosers_page.find('tbody')
 looser_rows = loosers_table.find_all('tr')
 
 result_json_content = {}
+result_json_content['timestamp'] = datetime.datetime.now().strftime("%c")
 result_json_content['loosers'] = []
 
 for looser_row in looser_rows:
