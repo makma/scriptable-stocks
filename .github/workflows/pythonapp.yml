@@ -33,6 +33,6 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add docs/index.html -f
+        git add docs/result.json -f
         git commit -m "Update docs/result.json" -a
         git push "https://makma:${{ secrets.GITHUB_PERSONAL_TOKEN }}@github.com/makma/scriptable-stocks.git" HEAD:master --follow-tags
