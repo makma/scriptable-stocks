@@ -1,6 +1,3 @@
-// Variables used by Scriptable.
-// These must be at the very top of the file. Do not edit.
-// icon-color: deep-blue; icon-glyph: magic;
 let widget = await createWidget();
 Script.setWidget(widget);
 widget.presentMedium();
@@ -8,8 +5,6 @@ Script.complete();
 
 async function createWidget() {
     const dataUrl = "https://makma.github.io/scriptable-stocks/result.json";
-
-    console.log(await new Request(dataUrl).loadJSON());
     const data = await new Request(dataUrl).loadJSON();
 
     const widget = new ListWidget();
