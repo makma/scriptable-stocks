@@ -11,7 +11,7 @@ loosers_table = loosers_page.find('tbody')
 looser_rows = loosers_table.find_all('tr')
 
 result_json_content = {}
-result_json_content['timestamp'] = datetime.datetime.now().strftime("%c")
+result_json_content['timestamp'] = datetime.datetime.now().strftime('%c')
 result_json_content['loosers'] = []
 
 for looser_row in looser_rows:
@@ -25,9 +25,9 @@ for looser_row in looser_rows:
     'change': change
   })
 
-loosers_json_filename = "docs/result.json"
+loosers_json_filename = 'docs/result.json'
 if os.path.exists(loosers_json_filename):
   os.remove(loosers_json_filename)
 
-with open(loosers_json_filename, "a") as loosers_json_file:
+with open(loosers_json_filename, 'a') as loosers_json_file:
   json.dump(result_json_content, loosers_json_file)
