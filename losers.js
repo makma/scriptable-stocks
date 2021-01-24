@@ -1,21 +1,26 @@
+// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
+// icon-color: red; icon-glyph: magic;
+const dataUrl = "https://makma.github.io/scriptable-stocks/result.json";
+
 let widget = await createWidget();
 Script.setWidget(widget);
 widget.presentMedium();
 Script.complete();
 
 async function createWidget() {
-    const dataUrl = "https://makma.github.io/scriptable-stocks/result.json";
+    const widget = new ListWidget();
+
     const data = await new Request(dataUrl).loadJSON();
 
-    const widget = new ListWidget();
-    let titleRow = widget.addText(`Today losers`);
+    let titleRow = widget.addText(`Losers ${data.timestamp}`);
     titleRow.font = Font.boldSystemFont(15);
     titleRow.textColor = Color.white();
     widget.addSpacer(5);
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < 7; i++) {
         const looser = data.loosers[i];
-        let row = widget.addText(`${looser.ticker} ${looser.name} ${looser.change}`);
+        let row = widget.addText(`${looser.ticker} ${looser.name.substring(0, 23)} ${looser.change}`);
         row.font = Font.semiboldSystemFont(14);
     }
 
@@ -25,6 +30,5 @@ async function createWidget() {
     gradient.locations =  [0, 1];
     
     widget.backgroundGradient = gradient
-    widget.setPadding(1, 10, 1, 1)
     return widget;
 }
